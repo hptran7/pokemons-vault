@@ -3,10 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  HashRouter,
+  Switch,
+  Route,
+} from "react-router-dom";
+import BaseLayout from './components/BaseLayout';
+import PokemonDetail from './components/PokemonDetail';
+import PokemonCompared from './components/PokemonCompared';
+import Navbar from './components/Navbar';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HashRouter>
+      <BaseLayout>
+      <Navbar/>
+      <Switch>
+        <Route exact path="/" component={App}></Route>
+        <Route exact path="/compared" component={PokemonCompared}></Route>
+        <Route path="/:pokemonName" component={PokemonDetail}></Route>
+        
+      </Switch>
+      </BaseLayout>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
